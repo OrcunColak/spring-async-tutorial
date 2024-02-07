@@ -2,13 +2,18 @@ package com.colak.springasynctutorial.controller;
 
 import com.colak.springasynctutorial.service.AsyncService;
 import lombok.RequiredArgsConstructor;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.client.RestTemplate;
 
+import java.util.concurrent.Callable;
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 
 @RestController
 @RequiredArgsConstructor
+@Slf4j
 public class AsyncServiceController {
 
     private final AsyncService asyncService;
@@ -16,6 +21,10 @@ public class AsyncServiceController {
     // http://localhost:8080/async-task
     @GetMapping("/async-task")
     public CompletableFuture<String> triggerAsyncTask() {
+        // nio-8080-exec-1 : triggerAsyncTask Start
+        // MyAsyncThread-1 : Async task completed!
+        log.info("triggerAsyncTask Start ");
         return asyncService.performAsyncTask();
     }
+
 }

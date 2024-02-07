@@ -5,6 +5,7 @@ import org.springframework.scheduling.annotation.Async;
 import org.springframework.stereotype.Service;
 
 import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
 
 @Service
 @Slf4j
@@ -14,7 +15,7 @@ public class AsyncService {
     public CompletableFuture<String> performAsyncTask() {
         // Simulate a time-consuming task
         try {
-            Thread.sleep(5000); // Sleep for 5 seconds
+            TimeUnit.SECONDS.sleep(5); // Sleep for 5 seconds
             log.info("Async task completed!");
             return CompletableFuture.completedFuture("Async task completed!");
         } catch (InterruptedException e) {
