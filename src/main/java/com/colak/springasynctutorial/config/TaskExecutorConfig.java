@@ -17,8 +17,11 @@ public class TaskExecutorConfig {
     @Bean
     public Executor taskExecutor() {
         ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
+        // Core number of threads
         threadPoolTaskExecutor.setCorePoolSize(1);
+        // Maximum number of threads
         threadPoolTaskExecutor.setMaxPoolSize(5);
+        // Capacity for queued tasks
         threadPoolTaskExecutor.setQueueCapacity(500);
         threadPoolTaskExecutor.setThreadNamePrefix("MyAsyncThread-");
         threadPoolTaskExecutor.setRejectedExecutionHandler(this::logRejection);
