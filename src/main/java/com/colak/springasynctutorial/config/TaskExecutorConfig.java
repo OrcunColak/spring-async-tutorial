@@ -37,9 +37,8 @@ public class TaskExecutorConfig implements AsyncConfigurer {
 
     @Override
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
-        return (throwable, method, obj) -> {
+        return (throwable, method, obj) ->
             // Handle exception
             log.error("AsyncUncaughtExceptionHandler ", throwable);
-        };
     }
 }
