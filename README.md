@@ -8,3 +8,8 @@ https://medium.com/@basecs101/spring-boot-async-annotation-make-api-calls-asynch
 The original idea is from
 https://dzone.com/articles/spring-and-servlet-30-asynchronous-processing
 
+# Async Task Uncaught Exception Handler
+
+The original idea is from  
+https://blog.stackademic.com/handling-background-processing-in-spring-boot-ae94aa03b869
+
