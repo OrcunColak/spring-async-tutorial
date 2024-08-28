@@ -1,6 +1,6 @@
-package com.colak.springasynctutorial.controller;
+package com.colak.springtutorial.controller;
 
-import com.colak.springasynctutorial.service.AsyncService;
+import com.colak.springtutorial.service.AsyncService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.ResponseEntity;

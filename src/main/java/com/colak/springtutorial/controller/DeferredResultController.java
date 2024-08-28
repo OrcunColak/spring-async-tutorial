@@ -1,4 +1,4 @@
-package com.colak.springasynctutorial.controller;
+package com.colak.springtutorial.controller;
 
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
