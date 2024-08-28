@@ -8,7 +8,6 @@ import org.springframework.scheduling.annotation.AsyncConfigurer;
 import org.springframework.scheduling.annotation.EnableAsync;
 import org.springframework.scheduling.concurrent.ThreadPoolTaskExecutor;
 
-import java.util.concurrent.Executor;
 import java.util.concurrent.ThreadPoolExecutor;
 
 @Configuration
@@ -17,7 +16,7 @@ import java.util.concurrent.ThreadPoolExecutor;
 public class TaskExecutorConfig implements AsyncConfigurer {
 
     @Bean
-    public Executor taskExecutor() {
+    public ThreadPoolTaskExecutor taskExecutor() {
         ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
         // Core number of threads
         threadPoolTaskExecutor.setCorePoolSize(1);

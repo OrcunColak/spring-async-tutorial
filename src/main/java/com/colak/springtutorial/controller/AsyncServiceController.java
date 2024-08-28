@@ -26,7 +26,7 @@ public class AsyncServiceController {
         return asyncService.performAsyncTask();
     }
 
-    // Start async task in the background and return a accepted response.
+    // Start async task in the background and return an accepted response.
     // The async may throw an exception, and it will be detected by AsyncUncaughtExceptionHandler
     // http://localhost:8080/async-task1
     @GetMapping("/async-task1")
