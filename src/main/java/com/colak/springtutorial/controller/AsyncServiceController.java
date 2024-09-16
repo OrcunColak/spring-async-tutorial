@@ -23,7 +23,9 @@ public class AsyncServiceController {
         // nio-8080-exec-1 : triggerAsyncTask Start
         // MyAsyncThread-1 : Async task completed!
         log.info("triggerAsyncTask Start ");
-        return asyncService.performAsyncTask();
+        CompletableFuture<String> future = asyncService.performAsyncTask();
+        future = future.exceptionally(ex -> "Async task failed to complete");
+        return future;
     }
 
     // Start async task in the background and return an accepted response.

@@ -16,15 +16,19 @@ public class AsyncService {
 
     @Async
     public CompletableFuture<String> performAsyncTask() {
-        // Simulate a time-consuming task
-        try {
-            TimeUnit.SECONDS.sleep(5); // Sleep for 5 seconds
-            log.info("Async task completed!");
-            return CompletableFuture.completedFuture("Async task completed!");
-        } catch (InterruptedException e) {
-            Thread.currentThread().interrupt();
+        // Generate a random integer between 0 and 999 (inclusive)
+        int randomNumber = random.nextInt(1000);
+        if (randomNumber < 100) {
+            try {
+                TimeUnit.SECONDS.sleep(5); // Sleep for 5 seconds
+                log.info("performAsyncTask completed!");
+                return CompletableFuture.completedFuture("Async task completed!");
+            } catch (InterruptedException exception) {
+                return CompletableFuture.failedFuture(exception);
+            }
+        } else {
+            throw new RuntimeException("Async task failed to complete!");
         }
-        return CompletableFuture.completedFuture("Async task failed to complete!");
     }
 
     @Async
@@ -35,8 +39,8 @@ public class AsyncService {
             // Simulate a time-consuming task
             try {
                 TimeUnit.SECONDS.sleep(5); // Sleep for 5 seconds
-                log.info("Async task completed!");
-            } catch (InterruptedException e) {
+                log.info("performMayThrowExceptionAsyncTask completed!");
+            } catch (InterruptedException exception) {
                 Thread.currentThread().interrupt();
             }
         } else {
