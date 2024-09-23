@@ -25,19 +25,28 @@ public class TaskExecutorConfig implements AsyncConfigurer {
         // Capacity for queued tasks
         threadPoolTaskExecutor.setQueueCapacity(500);
         threadPoolTaskExecutor.setThreadNamePrefix("MyAsyncThread-");
-        threadPoolTaskExecutor.setRejectedExecutionHandler(this::logRejection);
+
+        // Custom rejection handler
+        // threadPoolTaskExecutor.setRejectedExecutionHandler((Runnable runnable, ThreadPoolExecutor taskExecutor) ->
+        //         log.warn("Task rejected, thread pool is full and queue is also full")
+        // );
+
+        // There are usually four policies:
+        // ThreadPoolExecutor.AbortPolicy: Discard the task and throw RejectedExecutionException.
+        // ThreadPoolExecutor.DiscardPolicy: Also discard the task, but do not throw an exception.
+        // ThreadPoolExecutor.DiscardOldestPolicy: Discard the task at the front of the queue and then try to execute the task again (repeat this process).
+        // ThreadPoolExecutor.CallerRunsPolicy: Runs the rejected task directly in the calling thread,
+        // unless the executor has been shut down, in which case the task is discarded.
+        threadPoolTaskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+
         threadPoolTaskExecutor.initialize();
         return threadPoolTaskExecutor;
-    }
-
-    private void logRejection(Runnable runnable, ThreadPoolExecutor taskExecutor) {
-        log.warn("Task rejected, thread pool is full and queue is also full");
     }
 
     @Override
     public AsyncUncaughtExceptionHandler getAsyncUncaughtExceptionHandler() {
         return (throwable, method, obj) ->
-            // Handle exception
-            log.error("AsyncUncaughtExceptionHandler : ", throwable);
+                // Handle exception
+                log.error("AsyncUncaughtExceptionHandler : ", throwable);
     }
 }
