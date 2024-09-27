@@ -15,6 +15,8 @@ import java.util.concurrent.ThreadPoolExecutor;
 @Slf4j
 public class TaskExecutorConfig implements AsyncConfigurer {
 
+    private static final int AWAIT_TERMINATION_SECONDS = 90;
+
     @Bean
     public ThreadPoolTaskExecutor taskExecutor() {
         ThreadPoolTaskExecutor threadPoolTaskExecutor = new ThreadPoolTaskExecutor();
@@ -38,6 +40,9 @@ public class TaskExecutorConfig implements AsyncConfigurer {
         // ThreadPoolExecutor.CallerRunsPolicy: Runs the rejected task directly in the calling thread,
         // unless the executor has been shut down, in which case the task is discarded.
         threadPoolTaskExecutor.setRejectedExecutionHandler(new ThreadPoolExecutor.CallerRunsPolicy());
+
+        threadPoolTaskExecutor.setWaitForTasksToCompleteOnShutdown(true);
+        threadPoolTaskExecutor.setAwaitTerminationSeconds(AWAIT_TERMINATION_SECONDS);
 
         threadPoolTaskExecutor.initialize();
         return threadPoolTaskExecutor;

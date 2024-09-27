@@ -13,3 +13,15 @@ https://dzone.com/articles/spring-and-servlet-30-asynchronous-processing
 The original idea is from  
 https://blog.stackademic.com/handling-background-processing-in-spring-boot-ae94aa03b869
 
+# Graceful Shutdown
+
+The original idea is from  
+https://medium.com/@office.yeon/graceful-shutdown-in-spring-boot-with-sync-and-async-tasks-a8f8d89ee252
+
+# Shutdown Actuator
+
+Run
+
+```
+curl -X POST localhost:8080/actuator/shutdown
+```
