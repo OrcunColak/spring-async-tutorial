@@ -17,6 +17,10 @@ https://blog.stackademic.com/handling-background-processing-in-spring-boot-ae94a
 
 The original idea is from  
 https://medium.com/@office.yeon/graceful-shutdown-in-spring-boot-with-sync-and-async-tasks-a8f8d89ee252
+```
+server.shutdown=graceful
+```
+Causes Tomcat to stop accepting new requests, waits for active requests to complete, and handles any interruptions or abort signals.
 
 # Shutdown Actuator
 
